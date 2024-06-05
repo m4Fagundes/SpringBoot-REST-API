@@ -29,6 +29,18 @@ public class PersonControler {
         return ResponseEntity.ok().body(person);
     }
 
+    @PostMapping("/register")
+    public ResponseEntity<String> registerUser(@RequestBody Person person) {
+        Person existingUser = personService.findByUsername(person.getUsername());
+        if(existingUser != null) {
+            return ResponseEntity.badRequest().body("Username already exists. Please choose a different username.");
+        }
+        
+        personService.save(person);
+        
+        return ResponseEntity.ok("User registered successfully!");
+    }
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<Person> getPerson(@PathVariable Long id){
         

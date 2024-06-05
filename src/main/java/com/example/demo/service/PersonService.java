@@ -30,4 +30,8 @@ public class PersonService {
         return personRepository.findById(id).orElse(null);
     }
 
+    public Person findByUsername(String username){
+        return personRepository.findByUsername(username);
+    }
+
 }
