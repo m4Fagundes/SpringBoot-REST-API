@@ -12,7 +12,7 @@ import com.example.demo.repository.PersonRepository;
 public class PersonService {
     
     @Autowired
-    public PersonRepository personRepository;
+    private PersonRepository personRepository;
 
     public Person save(Person person){
         return personRepository.save(person);
@@ -20,6 +20,10 @@ public class PersonService {
 
     public List<Person> fildAll(){
         return personRepository.findAll();
+    }
+
+    public Person findById(Long id){
+        return personRepository.findById(id).orElse(null);
     }
     
 
