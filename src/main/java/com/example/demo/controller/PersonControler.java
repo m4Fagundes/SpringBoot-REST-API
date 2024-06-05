@@ -38,6 +38,7 @@ public class PersonControler {
     
     @GetMapping(value = "/listAllPerson")
     public ResponseEntity<List<Person>> getAllPerson(){
+        
         List<Person> persons = personService.fildAll();
         return ResponseEntity.ok().body(persons);
     }
