@@ -16,7 +16,7 @@ public class PersonService {
     private PersonRepository personRepository;
 
     public Person save(Person person){
-        if (person.getFirstName() == null || person.getLastName() == null ||person.getCpf() == null) {
+        if (person.getFirstName() == null || person.getUsername() == null ||person.getCpf() == null) {
             throw new PersonNameNullException();
         }
         return personRepository.save(person);
