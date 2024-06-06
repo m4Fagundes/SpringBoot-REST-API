@@ -3,23 +3,23 @@ package com.example.demo.controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.service.AuthenticationService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
 @RestController
 public class AuthenticatiionController {
 
-    
-    private final AuthenticationService authenticationService;
+    @Autowired
+    private AuthenticationService authenticationService;
 
-    public AuthenticatiionController(AuthenticationService authenticationService){
-        this.authenticationService = authenticationService;
-    }
 
     @PostMapping("authenticate")
-    public String authenticate() {
+    public String authenticate(Authentication authentication) {
 
-        return authenticationService.authenticate();
+        return authenticationService.authenticate(authentication);
     }
     
 }
