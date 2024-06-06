@@ -1,5 +1,7 @@
 package com.example.demo.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,6 +13,6 @@ import com.example.demo.model.Person;
 public interface PersonRepository extends JpaRepository<Person, Long>{
 
     @Query("SELECT e FROM Person e JOIN FETCH e.roles WHERE e.username= (:username)")
-    public Person findByUsername(@Param ("username") String username);
+    Optional<Person> findByUsername(@Param ("username") String username);
 
 }

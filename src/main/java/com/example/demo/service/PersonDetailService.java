@@ -19,12 +19,11 @@ public class PersonDetailService implements UserDetailsService{
 
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        
-        return personRepository.findByUsername(username)
-        .map(PersonAlthenticated::new)
-        .orElseThrow(() -> new UsernameNotFoundException("Unsername no found"));
-
-    }
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    return personRepository.findByUsername(username)
+        .map(user -> new PersonAlthenticated(user))
+        .orElseThrow(
+            () -> new UsernameNotFoundException("User Not Found with username: " + username));
+  }
 
 }

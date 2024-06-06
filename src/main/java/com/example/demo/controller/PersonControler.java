@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,7 @@ public class PersonControler {
 
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody Person person) {
-        Person existingUser = personService.findByUsername(person.getUsername());
+        Optional<Person> existingUser = personService.findByUsername(person.getUsername());
         if(existingUser != null) {
             return ResponseEntity.badRequest().body("Username already exists. Please choose a different username.");
         }

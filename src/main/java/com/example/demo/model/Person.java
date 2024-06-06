@@ -42,7 +42,7 @@ public class Person {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "person_roles", joinColumns =  @JoinColumn(name = "person_id"))
-    @Column(name = "role_id")
+    @Column(name = "role")
     private List<String> roles = new ArrayList<>();
 
     private String birthDate;
